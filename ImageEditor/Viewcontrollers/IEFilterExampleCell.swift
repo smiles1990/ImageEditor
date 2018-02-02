@@ -13,5 +13,6 @@ class IEFilterExampleCell: UICollectionViewCell {
     @IBOutlet weak var filterNameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     
+    
 }
 

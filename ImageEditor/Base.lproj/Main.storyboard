@@ -59,7 +59,6 @@
                                                         <constraint firstAttribute="trailing" secondItem="pBn-mK-uaF" secondAttribute="trailing" id="MzY-1b-ZFj"/>
                                                         <constraint firstItem="pBn-mK-uaF" firstAttribute="top" secondItem="D8z-LZ-ELE" secondAttribute="top" id="TKg-Nh-V1a"/>
                                                     </constraints>
-                                                    <size key="customSize" width="150" height="150"/>
                                                     <connections>
                                                         <outlet property="cellImage" destination="pBn-mK-uaF" id="GS3-AY-Wml"/>
                                                     </connections>
@@ -73,9 +72,17 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="m0p-SZ-LKg" firstAttribute="top" secondItem="3U8-OX-yCW" secondAttribute="top" id="72B-o3-lgD"/>
+                                        <constraint firstItem="m0p-SZ-LKg" firstAttribute="leading" secondItem="3U8-OX-yCW" secondAttribute="leading" id="D26-tR-x89"/>
+                                        <constraint firstAttribute="trailing" secondItem="m0p-SZ-LKg" secondAttribute="trailing" id="DBV-Y1-7Aq"/>
                                         <constraint firstAttribute="trailing" secondItem="m0p-SZ-LKg" secondAttribute="trailing" id="DK0-Nr-lfc"/>
+                                        <constraint firstItem="m0p-SZ-LKg" firstAttribute="top" secondItem="3U8-OX-yCW" secondAttribute="top" id="IGf-4X-Khh"/>
                                         <constraint firstItem="m0p-SZ-LKg" firstAttribute="leading" secondItem="3U8-OX-yCW" secondAttribute="leading" id="NKu-qF-mbs"/>
+                                        <constraint firstAttribute="bottom" secondItem="m0p-SZ-LKg" secondAttribute="bottom" id="Vgb-wU-TdJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="m0p-SZ-LKg" secondAttribute="trailing" id="aV4-fX-rPo"/>
+                                        <constraint firstAttribute="bottom" secondItem="m0p-SZ-LKg" secondAttribute="bottom" id="hRb-UN-hg6"/>
                                         <constraint firstAttribute="bottom" secondItem="m0p-SZ-LKg" secondAttribute="bottom" id="ptf-eV-ukM"/>
+                                        <constraint firstItem="m0p-SZ-LKg" firstAttribute="top" secondItem="3U8-OX-yCW" secondAttribute="top" id="wVC-Ls-yOD"/>
+                                        <constraint firstItem="m0p-SZ-LKg" firstAttribute="leading" secondItem="3U8-OX-yCW" secondAttribute="leading" id="yfw-UV-6fa"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="extraLight"/>
@@ -84,7 +91,11 @@
                         <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Hv7-nd-n0c" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6m8-GY-BsR"/>
+                            <constraint firstAttribute="bottom" secondItem="Hv7-nd-n0c" secondAttribute="bottom" id="GzC-MY-bpv"/>
+                            <constraint firstItem="Hv7-nd-n0c" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="MVZ-8v-aj6"/>
                             <constraint firstAttribute="bottom" secondItem="Hv7-nd-n0c" secondAttribute="bottom" id="Vof-iy-2Hw"/>
+                            <constraint firstItem="Hv7-nd-n0c" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="fqB-uA-Hev"/>
+                            <constraint firstItem="Hv7-nd-n0c" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="u83-Cz-HSA"/>
                             <constraint firstItem="Hv7-nd-n0c" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="x0X-dA-P5G"/>
                             <constraint firstItem="Hv7-nd-n0c" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xEs-TS-Uo5"/>
                         </constraints>
@@ -165,8 +176,8 @@
                                                                             <rect key="frame" x="8" y="3" width="109" height="21"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                            <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
-                                                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <color key="highlightedColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </label>
                                                                     </subviews>
                                                                 </view>

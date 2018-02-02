@@ -76,7 +76,8 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath) as! IEFilterExampleCell
         cell.filterNameLabel.text = filterArray[indexPath.item].name
-        cell.imageView.image = self.currentImage
+        let imageName = "ex"+filterArray[indexPath.item].name
+        cell.imageView.image = UIImage(named: imageName)
         cell.layer.cornerRadius = ((collectionView.bounds.width-30)/16)
         
         return cell
@@ -110,7 +111,6 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
         displayShareSheet(shareContent: imageToShare!)
         
     }
-    
     
     @IBAction func backButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
