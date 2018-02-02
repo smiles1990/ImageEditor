@@ -25,6 +25,7 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
     var currentImage: UIImage!
     var context: CIContext!
     var currentFilter: CIFilter!
+    var imageToShare: UIImage?
     
     var selectedFilter = ""
     
@@ -59,13 +60,11 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
     
         if inputKeys.contains(kCIInputRadiusKey) { currentFilter.setValue(intensityControl.value * 200, forKey: kCIInputRadiusKey)
         }
-    
-        
-        
         
         if let cgimg = context.createCGImage(currentFilter.outputImage!, from: currentFilter.outputImage!.extent) {
             let processedImage = UIImage(cgImage: cgimg)
             self.imageView.image = processedImage
+            imageToShare = processedImage
         }
     }
     
@@ -91,8 +90,8 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
         
         self.currentFilter = filterArray[indexPath.item].filter
         
-        let beginImage = CIImage(image: currentImage)
-        currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
+        let updatedImage = CIImage(image: currentImage)
+        currentFilter.setValue(updatedImage, forKey: kCIInputImageKey)
         
         applyProcessing()
     }
@@ -100,6 +99,18 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
     @IBAction func intensityChagned(_ sender: Any) {
         applyProcessing()
     }
+    
+    func displayShareSheet(shareContent:UIImage) {
+        let activityViewController = UIActivityViewController(activityItems: [shareContent as UIImage], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: {})
+    }
+    
+    @IBAction func shareButton(_ sender: Any) {
+        
+        displayShareSheet(shareContent: imageToShare!)
+        
+    }
+    
     
     @IBAction func backButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
