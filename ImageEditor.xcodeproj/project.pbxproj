@@ -13,6 +13,8 @@
 		52605B432020AD21007367BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52605B422020AD21007367BE /* Assets.xcassets */; };
 		52605B462020AD21007367BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52605B442020AD21007367BE /* LaunchScreen.storyboard */; };
 		52605B4F2020C420007367BE /* IEImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605B4E2020C420007367BE /* IEImageCell.swift */; };
+		52E15EE92022831400C9B17C /* IEFilterExampleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E15EE82022831400C9B17C /* IEFilterExampleCell.swift */; };
+		52E15EEB2022843800C9B17C /* IEEditViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E15EEA2022843800C9B17C /* IEEditViewVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		52605B452020AD21007367BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52605B472020AD21007367BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52605B4E2020C420007367BE /* IEImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEImageCell.swift; sourceTree = "<group>"; };
+		52E15EE82022831400C9B17C /* IEFilterExampleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEFilterExampleCell.swift; sourceTree = "<group>"; };
+		52E15EEA2022843800C9B17C /* IEEditViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEEditViewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,8 @@
 			children = (
 				52605B3D2020AD21007367BE /* IEMainVC.swift */,
 				52605B4E2020C420007367BE /* IEImageCell.swift */,
+				52E15EE82022831400C9B17C /* IEFilterExampleCell.swift */,
+				52E15EEA2022843800C9B17C /* IEEditViewVC.swift */,
 			);
 			path = Viewcontrollers;
 			sourceTree = "<group>";
@@ -147,8 +153,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52E15EE92022831400C9B17C /* IEFilterExampleCell.swift in Sources */,
 				52605B4F2020C420007367BE /* IEImageCell.swift in Sources */,
 				52605B3E2020AD21007367BE /* IEMainVC.swift in Sources */,
+				52E15EEB2022843800C9B17C /* IEEditViewVC.swift in Sources */,
 				52605B3C2020AD21007367BE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

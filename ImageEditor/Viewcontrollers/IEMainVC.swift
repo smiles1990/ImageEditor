@@ -9,17 +9,52 @@
 import UIKit
 
 struct RedditPageJSON: Codable {
+    
     let data: data
     let kind: String
+    
     struct data: Codable {
+        
         let after: String
         let children: Array<data>
+        
         struct data: Codable {
+            
             let data: redditPost
+            
             struct redditPost: Codable {
+                
                 let url: String
+                let preview: imageData?
+                
+                struct imageData: Codable {
+                    
+                    let images: Array<data>
+                    
+                    struct data: Codable {
+                        
+                        let source: data
+                        let resolutions: Array<data>
+                        
+                        struct data: Codable {
+                            
+                            let url: String
+                            
+                        }
+                    }
+                }
             }
         }
+    }
+}
+
+class LoadedImage {
+    let lowResImage: UIImage!
+    let sourceResImageURL: String!
+    
+    init(image: UIImage, url: String) {
+        lowResImage = image
+        sourceResImageURL = url
     }
 }
 
@@ -27,7 +62,7 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var imageArray = [UIImage]()
+    var imageArray = [LoadedImage]()
     var subredditName = "HumanPorn"
     var lastImage = ""
     
@@ -53,9 +88,10 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         var urlString = ""
         
         if lastImage == "" {
-            urlString = "https://www.reddit.com/r/"+self.subredditName+"/top.json?limit=30&t=all"
+            urlString = "https://www.reddit.com/r/"+self.subredditName+"/top.json?limit=20&t=all"
         } else {
             urlString = "https://www.reddit.com/r/"+self.subredditName+"/top.json?limit=20&t=all&after="+lastImage
+            print(urlString)
         }
         
         let jsonURL = NSURL(string: urlString)
@@ -72,18 +108,35 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
                 
                 self.lastImage = info.data.after
                 
+                print("Last Image:"+self.lastImage)
+                
                 for children in info.data.children {
                     do{
-                        let imageURL = URL(string: children.data.url)
-                        let data = try Data(contentsOf: imageURL!)
-                        self.imageArray.append(UIImage(data: data)!)
-                    }catch{
-                        print("Error: data error fetching image")
+                        if children.data.preview != nil {
+                            
+                            let apiImgArray = children.data.preview?.images
+                            
+                            let cellImgURLString = apiImgArray![0].resolutions[2].url
+                            let editedString = cellImgURLString.replacingOccurrences(of: "amp;", with: "")
+                            let cellImgData = try Data(contentsOf: NSURL(string: editedString)! as URL)
+                            let cellImg = UIImage(data: cellImgData)
+                            
+                            let highResImgURL = apiImgArray![0].source.url
+                            
+                            let imageObject = LoadedImage.init(image: cellImg!, url: highResImgURL)
+                            self.imageArray.append(imageObject)
+                            
+                        }
+                        
+                    }catch let imgErr{
+                        print(imgErr, "Error: data error fetching image")
                         print(children.data.url)
                     }
                 }
+                
+                
             }catch let jsonErr {
-                print ("Error loading parsing RedditPage JSON", jsonErr)
+                print ("Error parsing RedditPage JSON", jsonErr)
             }
             
             DispatchQueue.main.async {
@@ -103,7 +156,7 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
 
         cell.layer.cornerRadius = ((collectionView.bounds.width-30)/8)
         
-        cell.cellImage.image = self.imageArray[indexPath.item]
+        cell.cellImage.image = self.imageArray[indexPath.item].lowResImage
         
         return cell
         
@@ -116,6 +169,30 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         }
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondViewController = storyboard.instantiateViewController(withIdentifier: "EditViewVC") as! IEEditViewVC
+        
+        let imgURLString = imageArray[indexPath.item].sourceResImageURL
+        let editedString = imgURLString?.replacingOccurrences(of: "amp;", with: "")
+        do{
+            let imgData = try Data(contentsOf: NSURL(string: editedString!)! as URL)
+            let img = UIImage(data: imgData)
+            secondViewController.currentImage = img
+            
+        
+        }catch let imgErr{
+            print("Error loading Img:", imgErr)
+            secondViewController.currentImage = imageArray[indexPath.item].lowResImage
+        }
+        
+        secondViewController.makeFilterList()
+        
+        self.present(secondViewController, animated: true, completion: nil)
 
+    }
+    
 }
 
