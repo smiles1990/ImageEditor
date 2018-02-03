@@ -76,7 +76,7 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColor = UIColor(hue: 0.0, saturation: 0.5, brightness: 0.8, alpha: 1.0)
+        collectionView.backgroundColor = UIColor(hue: 0.0, saturation: 0.5, brightness: 0.7, alpha: 1.0)
         let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         let itemWidth = ((collectionView.bounds.width-30)/2)
         let itemHeight = ((collectionView.bounds.width-30)/2)
@@ -88,7 +88,6 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func getImages(){
@@ -186,7 +185,6 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
             let imgData = try Data(contentsOf: NSURL(string: editedString!)! as URL)
             let img = UIImage(data: imgData)
             secondViewController.currentImage = img
-            
         
         }catch let imgErr{
             print("Error loading Img:", imgErr)
@@ -195,6 +193,7 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         
         secondViewController.currentColor = bgColor
         secondViewController.makeFilterList()
+        secondViewController.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
 
         self.present(secondViewController, animated: true, completion: nil)
         
@@ -202,13 +201,9 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        //let maximumHorizontalOffset = scrollView.contentSize.width - scrollView.frame.width
-        //let currentHorizontalOffset = scrollView.contentOffset.x;
-        
         let maximumVerticalOffset = scrollView.contentSize.height - scrollView.frame.height
         let currentVerticalOffset = scrollView.contentOffset.y
         
-        //let percentageHorizontalOffset = currentHorizontalOffset / maximumHorizontalOffset
         let percentageVerticalOffset = currentVerticalOffset / maximumVerticalOffset
         
         didScrollToPercentageOffset(percentOffset: Float(percentageVerticalOffset))
@@ -218,11 +213,10 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     func didScrollToPercentageOffset(percentOffset: Float){
     
-        // here I set the backgroundColor of the text view to a color calculated in the next method
         self.collectionView.backgroundColor = colorForOffsetPercentage()
         
-            bgTotalPercent = bgTotalPercent + percentOffset
-            bgCount = bgTotalPercent - round(Float(bgTotalPercent))
+        bgTotalPercent = bgTotalPercent + percentOffset
+        bgCount = bgTotalPercent - round(Float(bgTotalPercent))
 
     }
     
@@ -232,7 +226,7 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         
         let actualHue = CGFloat.init((maxColorHue - minColorHue) * percentage + minColorHue)
         
-        let color = UIColor(hue: actualHue, saturation: 0.5, brightness: 0.8, alpha: 1.0)
+        let color = UIColor(hue: actualHue, saturation: 0.5, brightness: 0.7, alpha: 1.0)
         
         bgColor = color
         

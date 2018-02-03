@@ -16,12 +16,11 @@ struct IEFilter {
     
 }
 
-class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var intensityControl: UISlider!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     
     var currentImage: UIImage!
@@ -38,14 +37,9 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
         super.viewDidLoad()
 
         view.backgroundColor = currentColor
-//        intensityControl.tintColor = currentColor
-//        collectionView.backgroundColor = currentColor
-//        backButton.setTitleColor(currentColor, for: .normal)
-//        shareButton.setTitleColor(currentColor, for: .normal)
         
         imageView.layer.cornerRadius = ((imageView.bounds.width-14)/8)
         imageView.clipsToBounds = true
-        //imageView.image = currentImage
         
         context = CIContext()
         currentFilter = filterArray[0].filter
@@ -53,7 +47,6 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
         
         applyProcessing()
-  
     }
     
     func applyProcessing() {
@@ -61,15 +54,15 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
         let inputKeys = currentFilter.inputKeys
         
         if inputKeys.contains(kCIInputIntensityKey){
-            intensityControl.isEnabled = true
-            intensityControl.alpha = 1.0
+            intensityControl.isHidden = false
             currentFilter.setValue(intensityControl.value, forKey: kCIInputIntensityKey)
         } else {
-            intensityControl.isEnabled = false
-            intensityControl.alpha = 0.2
+            intensityControl.isHidden = true
         }
     
-        if inputKeys.contains(kCIInputRadiusKey) { currentFilter.setValue(intensityControl.value * 200, forKey: kCIInputRadiusKey)
+        if inputKeys.contains(kCIInputRadiusKey) {
+            currentFilter.setValue(intensityControl.value, forKey: kCIInputRadiusKey)
+            intensityControl.isHidden = false
         }
         
         if let cgimg = context.createCGImage(currentFilter.outputImage!, from: currentFilter.outputImage!.extent) {
@@ -123,8 +116,8 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
         displayShareSheet(shareContent: imageToShare!)
         
     }
-    
-    @IBAction func backButton(_ sender: Any) {
+
+    @IBAction func backSwipe(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
@@ -135,7 +128,8 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
         filterArray.append(IEFilter.init(name: "Noir", filter: CIFilter(name: "CIPhotoEffectNoir")!))
         filterArray.append(IEFilter.init(name: "Instant", filter: CIFilter(name: "CIPhotoEffectInstant")!))
         filterArray.append(IEFilter.init(name: "Posterize", filter: CIFilter(name: "CIColorPosterize")!))
-        
+        filterArray.append(IEFilter.init(name: "Pixellate", filter: CIFilter(name:"CIPixellate")!))
+        filterArray.append(IEFilter.init(name: "Comic", filter: CIFilter(name:"CIComicEffect")!))
     }
     
 }

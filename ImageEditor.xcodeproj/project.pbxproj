@@ -74,9 +74,9 @@
 			isa = PBXGroup;
 			children = (
 				52605B3D2020AD21007367BE /* IEMainVC.swift */,
+				52E15EEA2022843800C9B17C /* IEEditViewVC.swift */,
 				52605B4E2020C420007367BE /* IEImageCell.swift */,
 				52E15EE82022831400C9B17C /* IEFilterExampleCell.swift */,
-				52E15EEA2022843800C9B17C /* IEEditViewVC.swift */,
 			);
 			path = Viewcontrollers;
 			sourceTree = "<group>";
