@@ -58,7 +58,7 @@ class LoadedImage {
     }
 }
 
-class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -66,9 +66,17 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     var subredditName = "HumanPorn"
     var lastImage = ""
     
+    let minColorHue: Float = 0.0
+    let maxColorHue: Float = 0.18
+    
+    var bgTotalPercent: Float = 0.0
+    var bgCount: Float = 0.0
+    var bgColor = UIColor(hue: 0.0, saturation: 0.5, brightness: 0.8, alpha: 1.0)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.backgroundColor = UIColor(hue: 0.0, saturation: 0.5, brightness: 0.8, alpha: 1.0)
         let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         let itemWidth = ((collectionView.bounds.width-30)/2)
         let itemHeight = ((collectionView.bounds.width-30)/2)
@@ -91,7 +99,6 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
             urlString = "https://www.reddit.com/r/"+self.subredditName+"/top.json?limit=20&t=all"
         } else {
             urlString = "https://www.reddit.com/r/"+self.subredditName+"/top.json?limit=20&t=all&after="+lastImage
-            print(urlString)
         }
         
         let jsonURL = NSURL(string: urlString)
@@ -107,8 +114,6 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
                 let info = try JSONDecoder().decode(RedditPageJSON.self, from: data)
                 
                 self.lastImage = info.data.after
-                
-                print("Last Image:"+self.lastImage)
                 
                 for children in info.data.children {
                     do{
@@ -188,10 +193,51 @@ class IEMainVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
             secondViewController.currentImage = imageArray[indexPath.item].lowResImage
         }
         
+        secondViewController.currentColor = bgColor
         secondViewController.makeFilterList()
-        
-        self.present(secondViewController, animated: true, completion: nil)
 
+        self.present(secondViewController, animated: true, completion: nil)
+        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        //let maximumHorizontalOffset = scrollView.contentSize.width - scrollView.frame.width
+        //let currentHorizontalOffset = scrollView.contentOffset.x;
+        
+        let maximumVerticalOffset = scrollView.contentSize.height - scrollView.frame.height
+        let currentVerticalOffset = scrollView.contentOffset.y
+        
+        //let percentageHorizontalOffset = currentHorizontalOffset / maximumHorizontalOffset
+        let percentageVerticalOffset = currentVerticalOffset / maximumVerticalOffset
+        
+        didScrollToPercentageOffset(percentOffset: Float(percentageVerticalOffset))
+        
+    }
+    
+    
+    func didScrollToPercentageOffset(percentOffset: Float){
+    
+        // here I set the backgroundColor of the text view to a color calculated in the next method
+        self.collectionView.backgroundColor = colorForOffsetPercentage()
+        
+            bgTotalPercent = bgTotalPercent + percentOffset
+            bgCount = bgTotalPercent - round(Float(bgTotalPercent))
+
+    }
+    
+    func colorForOffsetPercentage() -> UIColor {
+        
+        let percentage = (bgTotalPercent - bgCount) * 0.01
+        
+        let actualHue = CGFloat.init((maxColorHue - minColorHue) * percentage + minColorHue)
+        
+        let color = UIColor(hue: actualHue, saturation: 0.5, brightness: 0.8, alpha: 1.0)
+        
+        bgColor = color
+        
+        return color
+        
     }
     
 }

@@ -21,11 +21,14 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var intensityControl: UISlider!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
     
     var currentImage: UIImage!
     var context: CIContext!
     var currentFilter: CIFilter!
     var imageToShare: UIImage?
+    var currentColor: UIColor!
     
     var selectedFilter = ""
     
@@ -33,6 +36,12 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.backgroundColor = currentColor
+//        intensityControl.tintColor = currentColor
+//        collectionView.backgroundColor = currentColor
+//        backButton.setTitleColor(currentColor, for: .normal)
+//        shareButton.setTitleColor(currentColor, for: .normal)
         
         imageView.layer.cornerRadius = ((imageView.bounds.width-14)/8)
         imageView.clipsToBounds = true
@@ -52,10 +61,12 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
         let inputKeys = currentFilter.inputKeys
         
         if inputKeys.contains(kCIInputIntensityKey){
-            intensityControl.isHidden = false
+            intensityControl.isEnabled = true
+            intensityControl.alpha = 1.0
             currentFilter.setValue(intensityControl.value, forKey: kCIInputIntensityKey)
         } else {
-            intensityControl.isHidden = true
+            intensityControl.isEnabled = false
+            intensityControl.alpha = 0.2
         }
     
         if inputKeys.contains(kCIInputRadiusKey) { currentFilter.setValue(intensityControl.value * 200, forKey: kCIInputRadiusKey)
@@ -76,6 +87,7 @@ class IEEditViewVC: UIViewController, UICollectionViewDelegate, UICollectionView
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath) as! IEFilterExampleCell
         cell.filterNameLabel.text = filterArray[indexPath.item].name
+        cell.filterNameLabel.highlightedTextColor = currentColor
         let imageName = "ex"+filterArray[indexPath.item].name
         cell.imageView.image = UIImage(named: imageName)
         cell.layer.cornerRadius = ((collectionView.bounds.width-30)/16)
