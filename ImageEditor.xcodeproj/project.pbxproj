@@ -60,7 +60,8 @@
 		52605B3A2020AD21007367BE /* ImageEditor */ = {
 			isa = PBXGroup;
 			children = (
-				52605B4D2020AD4E007367BE /* Viewcontrollers */,
+				52605B4D2020AD4E007367BE /* IE_ViewControllers */,
+				5282B1B120271FCD00B944F6 /* IE_Cells */,
 				52605B3B2020AD21007367BE /* AppDelegate.swift */,
 				52605B3F2020AD21007367BE /* Main.storyboard */,
 				52605B422020AD21007367BE /* Assets.xcassets */,
@@ -70,15 +71,22 @@
 			path = ImageEditor;
 			sourceTree = "<group>";
 		};
-		52605B4D2020AD4E007367BE /* Viewcontrollers */ = {
+		52605B4D2020AD4E007367BE /* IE_ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				52605B3D2020AD21007367BE /* IEMainVC.swift */,
 				52E15EEA2022843800C9B17C /* IEEditViewVC.swift */,
+			);
+			path = IE_ViewControllers;
+			sourceTree = "<group>";
+		};
+		5282B1B120271FCD00B944F6 /* IE_Cells */ = {
+			isa = PBXGroup;
+			children = (
 				52605B4E2020C420007367BE /* IEImageCell.swift */,
 				52E15EE82022831400C9B17C /* IEFilterExampleCell.swift */,
 			);
-			path = Viewcontrollers;
+			path = IE_Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
