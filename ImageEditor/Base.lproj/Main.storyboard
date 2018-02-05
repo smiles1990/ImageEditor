@@ -103,7 +103,6 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="m0p-SZ-LKg" id="TAR-AX-Uab"/>
-                        <segue destination="Fgs-1V-fsL" kind="presentation" modalTransitionStyle="crossDissolve" id="O0f-Aa-Gwx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -166,7 +165,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="28"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4E-jM-9dt">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4E-jM-9dt">
                                                                         <rect key="frame" x="8" y="3" width="109" height="21"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -210,9 +209,11 @@
                                             <action selector="shareButton:" destination="Fgs-1V-fsL" eventType="touchUpInside" id="asb-0S-Zvh"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zb4-XC-IUP">
-                                        <rect key="frame" x="8" y="730" width="46" height="74"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zb4-XC-IUP">
+                                        <rect key="frame" x="8" y="730" width="35" height="74"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="74" id="ZGd-xc-uqD"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="63"/>
                                         <state key="normal" title="&lt;">
                                             <color key="titleColor" red="0.27711904048919678" green="0.27735692262649536" blue="0.27715590596199036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -228,6 +229,7 @@
                                     <constraint firstItem="NFT-Nz-mgD" firstAttribute="top" secondItem="Gk2-XW-b0r" secondAttribute="bottom" constant="8" id="Ddx-ej-V17"/>
                                     <constraint firstItem="Gk2-XW-b0r" firstAttribute="leading" secondItem="93L-0X-2LN" secondAttribute="leading" id="EtH-fs-p3p"/>
                                     <constraint firstItem="wav-Dw-aFS" firstAttribute="top" secondItem="NFT-Nz-mgD" secondAttribute="bottom" constant="8" id="Hp2-8W-79m"/>
+                                    <constraint firstAttribute="bottom" secondItem="zb4-XC-IUP" secondAttribute="bottom" constant="8" id="KLp-j9-P7H"/>
                                     <constraint firstItem="wav-Dw-aFS" firstAttribute="centerX" secondItem="93L-0X-2LN" secondAttribute="centerX" id="T7Z-fL-11I"/>
                                     <constraint firstItem="2nC-fw-iKz" firstAttribute="leading" secondItem="93L-0X-2LN" secondAttribute="leading" constant="8" id="T8f-EP-s5C"/>
                                     <constraint firstItem="Gk2-XW-b0r" firstAttribute="top" secondItem="2nC-fw-iKz" secondAttribute="bottom" constant="8" id="TSG-ia-Mea"/>
@@ -237,6 +239,7 @@
                                     <constraint firstAttribute="trailing" secondItem="NFT-Nz-mgD" secondAttribute="trailing" constant="8" id="dWW-IO-MI8"/>
                                     <constraint firstAttribute="trailing" secondItem="2nC-fw-iKz" secondAttribute="trailing" constant="8" id="tIK-Ww-iJh"/>
                                     <constraint firstAttribute="bottom" secondItem="wav-Dw-aFS" secondAttribute="bottom" constant="12" id="vn6-Fl-PDt"/>
+                                    <constraint firstItem="zb4-XC-IUP" firstAttribute="leading" secondItem="93L-0X-2LN" secondAttribute="leading" constant="8" id="vv3-eS-2J6"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="ump-cs-SxC" appends="YES" id="xTa-ui-5O3"/>
