@@ -210,26 +210,24 @@
                                             <action selector="shareButton:" destination="Fgs-1V-fsL" eventType="touchUpInside" id="asb-0S-Zvh"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNc-0v-8Z5">
-                                        <rect key="frame" x="8" y="728" width="47" height="72"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="72" id="kmn-Dd-d3b"/>
-                                            <constraint firstAttribute="width" constant="47" id="tLK-li-lCZ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="52"/>
-                                        <color key="textColor" red="0.33300891518592834" green="0.33328679203987122" blue="0.33305191993713379" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zb4-XC-IUP">
+                                        <rect key="frame" x="8" y="730" width="46" height="74"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-Book" family="Bodoni 72 Oldstyle" pointSize="63"/>
+                                        <state key="normal" title="&lt;">
+                                            <color key="titleColor" red="0.27711904048919678" green="0.27735692262649536" blue="0.27715590596199036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backSwipe:" destination="Fgs-1V-fsL" eventType="touchUpInside" id="yYS-7X-C61"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="gNc-0v-8Z5" secondAttribute="bottom" constant="12" id="2yN-EW-vJz"/>
-                                    <constraint firstItem="gNc-0v-8Z5" firstAttribute="leading" secondItem="93L-0X-2LN" secondAttribute="leading" constant="8" id="8A4-qj-fMe"/>
                                     <constraint firstItem="NFT-Nz-mgD" firstAttribute="top" secondItem="Gk2-XW-b0r" secondAttribute="bottom" constant="8" id="Ddx-ej-V17"/>
                                     <constraint firstItem="Gk2-XW-b0r" firstAttribute="leading" secondItem="93L-0X-2LN" secondAttribute="leading" id="EtH-fs-p3p"/>
                                     <constraint firstItem="wav-Dw-aFS" firstAttribute="top" secondItem="NFT-Nz-mgD" secondAttribute="bottom" constant="8" id="Hp2-8W-79m"/>
-                                    <constraint firstItem="gNc-0v-8Z5" firstAttribute="top" secondItem="NFT-Nz-mgD" secondAttribute="bottom" constant="6" id="Q8N-bt-Ibn"/>
                                     <constraint firstItem="wav-Dw-aFS" firstAttribute="centerX" secondItem="93L-0X-2LN" secondAttribute="centerX" id="T7Z-fL-11I"/>
                                     <constraint firstItem="2nC-fw-iKz" firstAttribute="leading" secondItem="93L-0X-2LN" secondAttribute="leading" constant="8" id="T8f-EP-s5C"/>
                                     <constraint firstItem="Gk2-XW-b0r" firstAttribute="top" secondItem="2nC-fw-iKz" secondAttribute="bottom" constant="8" id="TSG-ia-Mea"/>
